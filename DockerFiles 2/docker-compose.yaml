@@ -1,0 +1,43 @@
+# version: '3'
+# services:
+#   python-app:
+#     build: ./python
+#     ports:
+#       - "5091:5000"
+#     volumes:
+#       - .:/pythonapp
+#     # depends_on:
+#     #   - redis
+#   # redis:
+#   #   # image: redis
+#   #   build: ./redis
+#   nginx:
+#     # image: nginx:alpine
+#     build: ./nginx
+#     ports:
+#       - "8080:80"
+
+
+version: '2'
+services:
+  python-app:
+    build: ./python
+    ports:
+     - "5000:5000"
+    volumes:
+     - .:/app
+    depends_on:
+     - redis
+  # redis:
+  #   image: redis
+  nginx:
+    build: ./nginx
+    ports:
+      - "8080:80"
+  redis:
+    build: ./redis
+    ports:
+      - "6379:6379"
+  #   environment:
+  #     - REDIS_USERNAME=yasir
+  #     - REDIS_PASSWORD=password
